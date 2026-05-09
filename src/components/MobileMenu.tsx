@@ -1,22 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import LionMark from "./LionMark";
 
 type NavLink = { label: string; href: string; tag?: string };
 
 const links: NavLink[] = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#about", tag: "Coming soon" },
-  { label: "Meet Dr. Sandy", href: "#doctor" },
-  { label: "Services", href: "#services" },
-  { label: "Treatments", href: "#treatments" },
-  { label: "First Visit", href: "#first-visit" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Blog", href: "#blog", tag: "Coming soon" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "First Visit", href: "/#first-visit" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Blog", href: "/#blog", tag: "Coming soon" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 type Props = {
@@ -58,7 +57,7 @@ export default function MobileMenu({ phone, phoneDisplay, whatsapp }: Props) {
           </div>
           <nav className="flex flex-col gap-1 flex-1">
             {links.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
@@ -70,7 +69,7 @@ export default function MobileMenu({ phone, phoneDisplay, whatsapp }: Props) {
                     {link.tag}
                   </span>
                 )}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="mt-8 flex flex-col gap-2.5">
