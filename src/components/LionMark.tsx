@@ -8,9 +8,7 @@ type Props = {
 };
 
 /**
- * Powerflow Chiropractic brand mark — uses the actual lion logo PNG.
- * On dark backgrounds (`inverted=true`), the lion sits on a white circular plate
- * so the red mark stays visible.
+ * Powerflow Chiropractic brand mark — uses the actual lion logo PNG (transparent).
  */
 export default function LionMark({
   size = 36,
@@ -23,9 +21,7 @@ export default function LionMark({
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <span
-        className={`relative shrink-0 grid place-items-center rounded-full overflow-hidden ${
-          inverted ? "bg-white shadow-md shadow-black/20" : "bg-transparent"
-        }`}
+        className="relative shrink-0 grid place-items-center bg-transparent"
         style={{ width: size, height: size }}
         aria-hidden
       >
