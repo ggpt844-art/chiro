@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, ChevronRight, Phone, Sparkles } from "lucide-react";
+import { Calendar, ChevronRight, Phone, Sparkles, Radio, GraduationCap } from "lucide-react";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import FloatingNav from "@/components/FloatingNav";
@@ -10,13 +10,13 @@ import Reveal from "@/components/Reveal";
 import AwardBadge from "@/components/AwardBadge";
 import CountUp from "@/components/CountUp";
 import { CLINIC } from "@/lib/clinic";
-import { awards } from "@/lib/content";
+import { awards, team } from "@/lib/content";
 import { IMAGE_BLUR } from "@/lib/imageBlur";
 
 export const metadata: Metadata = {
   title: "About Dr. Sandy Bhasin & Powerflow Chiropractic",
   description:
-    "Meet Dr. Sandy Bhasin (B.Sc, D.C) and the Powerflow Chiropractic team — a Mississauga family clinic since 2014, voted #1 by Top Choice Awards 7 years running.",
+    "Meet Dr. Sandy Bhasin (B.Sc, D.C) and the Powerflow Chiropractic team — 24 years of practice, 300,000+ adjustments, 7-year Top Choice and 5-year Consumer Choice award winner in Mississauga.",
   alternates: { canonical: "https://powerflowchiropractic.ca/about" },
 };
 
@@ -40,9 +40,12 @@ export default function AboutPage() {
             </h1>
             <p className="mt-5 text-[#2c2c2c] text-[16px] sm:text-[17px] leading-relaxed max-w-xl mx-auto">
               Powerflow Chiropractic is a family clinic in the heart of
-              Mississauga, founded by {CLINIC.doctor.name} ({CLINIC.doctor.credentials}) in {CLINIC.yearFounded}. Our mission is to keep your central
-              nervous system strong so your body can express its fullest
-              physical, mental, and emotional well-being.
+              Mississauga — {CLINIC.landmark.toLowerCase()}. {CLINIC.doctor.name}{" "}
+              ({CLINIC.doctor.credentials}) has been in his own practice for{" "}
+              {CLINIC.yearsInPractice} years and personally performed over{" "}
+              {CLINIC.adjustmentsPerformed.toLocaleString()} adjustments. Our mission
+              is to keep your central nervous system strong so your body can
+              express its fullest physical, mental, and emotional well-being.
             </p>
           </Reveal>
         </div>
@@ -52,10 +55,10 @@ export default function AboutPage() {
       <section className="relative bg-white border-y border-black/5 px-5 py-10">
         <ul className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 text-center">
           {[
-            { value: <CountUp to={12000} duration={1400} suffix="+" />, label: "Patient adjustments" },
-            { value: <CountUp to={10} duration={900} suffix="+ yrs" />, label: "Serving Mississauga" },
+            { value: <CountUp to={CLINIC.adjustmentsPerformed} duration={1600} suffix="+" />, label: "Adjustments performed" },
+            { value: <CountUp to={CLINIC.yearsInPractice} duration={900} suffix=" yrs" />, label: "In his own practice" },
             { value: <CountUp to={CLINIC.rating} duration={1100} decimals={1} />, label: `Google rating · ${CLINIC.reviewCount}+ reviews` },
-            { value: awards.length.toString(), label: "Industry awards earned" },
+            { value: <CountUp to={CLINIC.awardYearWins} duration={900} />, label: "Award years won" },
           ].map((stat) => (
             <li key={stat.label} className="flex flex-col items-center px-2">
               <div className="font-display text-[30px] sm:text-[36px] font-black text-[#b73026] leading-none">
@@ -97,31 +100,43 @@ export default function AboutPage() {
               <p className="text-[#2c2c2c] text-sm font-semibold mt-1.5">
                 {CLINIC.doctor.title}
               </p>
-              <span className="inline-block mt-4 rounded-full bg-[#b73026]/10 text-[#b73026] px-3 py-1 text-[10.5px] font-bold tracking-[0.18em] uppercase">
-                CCO Licensed · Since {CLINIC.yearFounded}
-              </span>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#b73026]/10 text-[#b73026] px-3 py-1 text-[10.5px] font-bold tracking-[0.18em] uppercase">
+                  <GraduationCap size={12} /> Life West &apos;99 · U of T &apos;96
+                </span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[#7d9070]/15 text-[#3f5236] px-3 py-1 text-[10.5px] font-bold tracking-[0.18em] uppercase">
+                  {CLINIC.yearsInPractice} Years In Practice
+                </span>
+              </div>
               <div className="mt-5 space-y-4 text-[#2c2c2c] text-[15.5px] leading-relaxed">
                 <p>
-                  Dr. Sandy has been delivering specific, scientific
-                  chiropractic care to the Mississauga community for over a
-                  decade. He believes everyone deserves a strong nervous system
-                  and a life of motion — and he&apos;s adjusted{" "}
-                  <strong className="text-[#1a1a1a]">{CLINIC.patientCount} patients</strong>{" "}
-                  to prove it.
+                  Dr. Sandy has been in his own chiropractic practice for{" "}
+                  <strong className="text-[#1a1a1a]">{CLINIC.yearsInPractice} years</strong>{" "}
+                  and has personally performed over{" "}
+                  <strong className="text-[#1a1a1a]">{CLINIC.adjustmentsPerformed.toLocaleString()} adjustments</strong>{" "}
+                  on Mississauga families — from infants to grandparents.
                 </p>
                 <p>
-                  His approach is calm, gentle, and patient-first. No long
-                  lectures, no scare tactics. Just honest answers about your
-                  spine and a plan that actually fits your life — whether
-                  you&apos;re a new parent, a desk worker with neck pain, an
-                  athlete recovering from injury, or a grandparent who just
-                  wants to keep moving.
+                  He graduated from <strong className="text-[#1a1a1a]">Life West Chiropractic</strong>{" "}
+                  in San Francisco (1999) after completing his B.Sc at the
+                  <strong className="text-[#1a1a1a]"> University of Toronto</strong> (1996).
+                  His focus has always been gentle, specific techniques —
+                  matched to the patient in front of him, not a one-size-fits-all
+                  protocol.
                 </p>
                 <p>
-                  Dr. Sandy is also a proud husband, father, and lifelong
-                  learner — constantly studying the latest research in
-                  chiropractic, biomechanics, and neuroscience so his patients
-                  get modern, evidence-based care.
+                  Dr. Sandy attends post-graduate seminars every year to stay
+                  current with the latest research in chiropractic, biomechanics,
+                  and neuroscience, so his patients get modern, evidence-based
+                  care delivered with a calm, patient-first bedside manner.
+                </p>
+                <p className="flex items-start gap-2 pt-2 text-[14px] text-[#2c2c2c]/85">
+                  <Radio size={16} className="text-[#b73026] mt-0.5 shrink-0" />
+                  <span>
+                    Regular Health &amp; Wellness contributor on{" "}
+                    <em>Eye on Asia Television</em> and the <em>Geetmala Radio</em>{" "}
+                    program with Darshan Sahota.
+                  </span>
                 </p>
               </div>
 
@@ -143,6 +158,43 @@ export default function AboutPage() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Team strip */}
+      <section id="team" className="px-5 py-16 bg-[#f5efe2] border-y border-black/5">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <div className="text-center mb-10">
+              <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+                Meet the Team
+              </p>
+              <h2 className="font-display text-[28px] sm:text-[34px] font-black leading-tight tracking-tight">
+                The people who keep <span className="text-[#b73026] italic">your visit calm</span>.
+              </h2>
+              <p className="mt-3 text-[#2c2c2c] text-[14.5px] max-w-md mx-auto leading-relaxed">
+                Behind every adjustment is a team that handles your booking,
+                insurance, and assessment so Dr. Sandy can focus on you.
+              </p>
+            </div>
+          </Reveal>
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+            {team.map((m, i) => (
+              <Reveal key={m.name} delay={i * 50} as="li">
+                <div className="rounded-2xl bg-white ring-1 ring-black/5 p-5 text-center h-full hover:shadow-md transition-shadow">
+                  <div className="mx-auto w-12 h-12 rounded-full bg-[#b73026]/10 text-[#b73026] grid place-items-center font-display font-black text-[18px] mb-3">
+                    {m.name.charAt(0)}
+                  </div>
+                  <p className="font-bold text-[15px] text-[#1a1a1a] leading-tight">
+                    {m.name}
+                  </p>
+                  <p className="mt-1 text-[#2c2c2c] text-[11.5px] leading-snug">
+                    {m.role}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -208,7 +260,7 @@ export default function AboutPage() {
               </div>
               <div className="p-7 md:p-10 flex flex-col justify-center">
                 <p className="text-[#b73026] text-[10.5px] tracking-[0.28em] uppercase font-bold mb-3">
-                  Verified · 2021
+                  Verified · 2021–2025
                 </p>
                 <h3 className="font-display text-[26px] md:text-[30px] font-black leading-tight">
                   Consumer Choice Award<br />
@@ -217,11 +269,12 @@ export default function AboutPage() {
                 <p className="mt-4 text-[#2c2c2c] text-[14.5px] leading-relaxed">
                   Voted by patients across the Peel Region as the top
                   chiropractic office for excellence in care, professionalism,
-                  and patient outcomes.
+                  and patient outcomes — <strong>5 years running</strong>.
                 </p>
                 <p className="mt-2 text-[#2c2c2c]/70 text-[13px] leading-relaxed">
-                  One of {awards.length} regional and provincial awards earned
-                  by Powerflow Chiropractic since {CLINIC.yearFounded}.
+                  Combined with the <strong>Top Choice Award</strong> for
+                  Mississauga (7 years running, 2019–2025), Dr. Sandy is one of
+                  the most consistently award-winning chiropractors in the GTA.
                 </p>
               </div>
             </div>

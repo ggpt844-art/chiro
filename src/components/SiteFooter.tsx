@@ -89,8 +89,7 @@ export default function SiteFooter() {
                 </span>
                 <br />
                 <span className="text-white/80 text-[12px] font-normal block mt-1.5">
-                  Free patient parking on site · Wheelchair-accessible entrance ·
-                  Suite 143 in the City Centre Drive medical building (Square One area)
+                  {CLINIC.landmark} · Free patient parking on site · Wheelchair-accessible entrance
                 </span>
               </div>
             </div>

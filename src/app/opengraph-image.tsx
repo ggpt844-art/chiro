@@ -75,7 +75,7 @@ export default async function OG() {
             <span style={{ color: "#f2a93b" }}>live in pain.</span>
           </div>
           <div style={{ fontSize: 30, color: "rgba(255,255,255,0.75)", lineHeight: 1.3, maxWidth: 950 }}>
-            Free spinal check-up with Dr. Sandy Bhasin — Mississauga&apos;s most trusted chiropractor since 2014.
+            Free spinal check-up with Dr. Sandy Bhasin — 24 years of practice, 300,000+ adjustments in Mississauga.
           </div>
         </div>
 

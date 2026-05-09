@@ -35,7 +35,9 @@ import {
   firstVisitSteps,
   instagramShots,
   promiseCards,
+  blogPosts,
 } from "@/lib/content";
+import ContactForm from "@/components/ContactForm";
 import { IMAGE_BLUR } from "@/lib/imageBlur";
 
 export default function Home() {
@@ -63,7 +65,7 @@ export default function Home() {
               <span className="text-[#b73026] italic">live in pain.</span>
             </h1>
             <p className="mt-7 text-[#2c2c2c] text-[16px] sm:text-[17px] leading-relaxed max-w-lg mx-auto">
-              <strong className="text-[#1a1a1a]">{CLINIC.patientCount} Mississauga patients adjusted</strong> by {CLINIC.doctor.name} since {CLINIC.yearFounded}. Gentle, scientific chiropractic care for the whole family — most new patients feel relief their first visit.
+              <strong className="text-[#1a1a1a]">{CLINIC.adjustmentsPerformed.toLocaleString()}+ adjustments</strong> performed by {CLINIC.doctor.name} over {CLINIC.yearsInPractice} years in Mississauga. Gentle, scientific chiropractic care for the whole family.
             </p>
 
             <div className="mt-9 grid sm:grid-cols-[auto_auto] gap-3 justify-center items-center">
@@ -146,20 +148,20 @@ export default function Home() {
         <ul className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 text-center">
           {[
             {
-              value: <CountUp to={12000} duration={1400} suffix="+" />,
-              label: "Patient adjustments",
+              value: <CountUp to={CLINIC.adjustmentsPerformed} duration={1600} suffix="+" />,
+              label: "Adjustments performed",
             },
             {
-              value: <CountUp to={10} duration={900} suffix="+ yrs" />,
-              label: "Serving Mississauga",
+              value: <CountUp to={CLINIC.yearsInPractice} duration={900} suffix=" yrs" />,
+              label: "In his own practice",
             },
             {
               value: <CountUp to={CLINIC.rating} duration={1100} decimals={1} />,
               label: `Google rating · ${CLINIC.reviewCount}+ reviews`,
             },
             {
-              value: "Same-week",
-              label: "Most new patients seen within days",
+              value: <CountUp to={CLINIC.awardYearWins} duration={900} />,
+              label: "Award years won",
             },
           ].map((stat) => (
             <li key={stat.label} className="flex flex-col items-center px-2">
@@ -197,12 +199,14 @@ export default function Home() {
                 Meet Dr. Sandy
               </p>
               <h2 className="font-display text-[30px] sm:text-[36px] font-black leading-tight tracking-tight">
-                A decade of <span className="text-[#b73026] italic">specific, scientific</span> chiropractic in Mississauga.
+                <span className="text-[#b73026] italic">{CLINIC.yearsInPractice} years</span> of specific, scientific chiropractic in Mississauga.
               </h2>
               <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed">
-                Dr. Sandy Bhasin (B.Sc, D.C) has been adjusting Mississauga
-                families for over ten years. Calm, gentle, and patient-first —
-                care for everyone from infants to seniors.
+                Dr. Sandy Bhasin (B.Sc, D.C) has been in his own practice for
+                {" "}{CLINIC.yearsInPractice} years and has personally performed over{" "}
+                {CLINIC.adjustmentsPerformed.toLocaleString()} adjustments. Life West
+                Chiropractic graduate (1999), University of Toronto B.Sc (1996).
+                Gentle, patient-first care for everyone from infants to seniors.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Link
@@ -525,42 +529,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────────────────── BLOG (placeholder) ────────────────────────── */}
+      {/* ────────────────────────── BLOG (3 latest video posts) ────────────────────────── */}
       <section id="blog" className="px-5 py-20 bg-[#f5efe2] relative bg-noise-light">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
-              Health Tips · Coming Soon
-            </p>
-            <h2 className="font-display text-[36px] sm:text-[42px] font-black leading-[1.05] tracking-tight">
-              The <span className="text-[#b73026] italic">Powerflow</span> Blog
-            </h2>
-            <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed max-w-lg mx-auto">
-              Practical posture, sleep, desk-setup, and recovery guides from Dr. Sandy. We&apos;re writing them now — drop your email and we&apos;ll send the first three when they go live.
-            </p>
+            <div className="text-center mb-10">
+              <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+                Health Tips · From Dr. Sandy
+              </p>
+              <h2 className="font-display text-[36px] sm:text-[42px] font-black leading-[1.05] tracking-tight">
+                The <span className="text-[#b73026] italic">Powerflow</span> Blog
+              </h2>
+              <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed max-w-lg mx-auto">
+                Short videos from Dr. Sandy on posture, sleep, recovery, and
+                everyday habits that keep your spine strong.
+              </p>
+            </div>
           </Reveal>
-          <Reveal delay={150}>
-            <NewsletterForm />
-          </Reveal>
-          <Reveal delay={300}>
-            <ul className="mt-12 grid sm:grid-cols-3 gap-3 text-left">
-              {[
-                { tag: "Posture", title: "5 desk-setup fixes for a pain-free workday" },
-                { tag: "Sleep", title: "Best sleeping positions for back &amp; neck pain" },
-                { tag: "Recovery", title: "What actually happens during a chiropractic adjustment" },
-              ].map((post) => (
-                <li
-                  key={post.title}
-                  className="rounded-2xl bg-white ring-1 ring-black/5 p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 opacity-60"
-                  aria-label="Coming soon"
+          <ul className="grid sm:grid-cols-3 gap-3 text-left">
+            {blogPosts.slice(0, 3).map((post, i) => (
+              <Reveal key={post.title} delay={i * 100} as="li">
+                <a
+                  href={post.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-2xl bg-white ring-1 ring-black/5 p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 h-full"
                 >
-                  <span className="inline-block text-[10.5px] font-bold tracking-[0.18em] uppercase text-[#b73026] mb-2">
-                    {post.tag} · Soon
+                  <span className="inline-block text-[10.5px] font-bold tracking-[0.18em] uppercase text-[#b73026] mb-3">
+                    {post.tag} · Video
                   </span>
-                  <p className="font-display text-[16.5px] font-bold leading-snug text-[#1a1a1a]" dangerouslySetInnerHTML={{ __html: post.title }} />
-                </li>
-              ))}
-            </ul>
+                  <p className="font-display text-[18px] font-bold leading-snug text-[#1a1a1a]">
+                    {post.title}
+                  </p>
+                  <p className="mt-3 text-[#2c2c2c] text-[12.5px]">
+                    {post.date}
+                  </p>
+                </a>
+              </Reveal>
+            ))}
+          </ul>
+          <Reveal delay={400}>
+            <div className="mt-10 text-center">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 rounded-full bg-[#b73026] text-white px-7 py-3.5 font-bold text-sm hover:bg-[#8e1f17] transition-colors shadow-md shadow-[#b73026]/20"
+              >
+                See all videos
+                <ChevronRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
+          <Reveal delay={500}>
+            <div className="mt-10 max-w-md mx-auto">
+              <p className="text-center text-[#2c2c2c] text-[12.5px] mb-3">
+                Get new videos in your inbox.
+              </p>
+              <NewsletterForm />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -577,6 +602,36 @@ export default function Home() {
             </h2>
           </div>
           <FAQ items={faqItems} />
+        </div>
+      </section>
+
+      {/* ────────────────────────── CONTACT FORM ────────────────────────── */}
+      <section
+        id="contact-form"
+        className="px-5 py-20 bg-[#fdfaf4] border-t border-black/5"
+      >
+        <div className="max-w-md mx-auto">
+          <Reveal>
+            <div className="text-center mb-8">
+              <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+                Send a Message
+              </p>
+              <h2 className="font-display text-[32px] sm:text-[36px] font-black leading-tight tracking-tight">
+                Got a <span className="text-[#b73026] italic">question?</span>
+              </h2>
+              <p className="mt-3 text-[#2c2c2c] text-[14.5px] leading-relaxed">
+                Prefer to write? Drop us a line and the front desk will get back
+                to you within one business day.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={150}>
+            <ContactForm
+              toEmail={CLINIC.email}
+              phoneDisplay={CLINIC.phoneDisplay}
+              phone={CLINIC.phone}
+            />
+          </Reveal>
         </div>
       </section>
 

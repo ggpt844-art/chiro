@@ -47,6 +47,9 @@ export default function FloatingNav({ phone }: Props) {
           <Link href="/services" className="hover:text-[#b73026] transition-colors">
             Services
           </Link>
+          <Link href="/blog" className="hover:text-[#b73026] transition-colors">
+            Blog
+          </Link>
           <Link href="/#reviews" className="hover:text-[#b73026] transition-colors">
             Reviews
           </Link>
