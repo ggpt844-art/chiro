@@ -107,4 +107,44 @@ a:focus-visible {
   background: inherit;
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'><path d='M0 0 C 300 60 900 60 1200 0 L 1200 60 L 0 60 Z' fill='black'/></svg>") no-repeat bottom / 100% 100%;
   mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'><path d='M0 0 C 300 60 900 60 1200 0 L 1200 60 L 0 60 Z' fill='black'/></svg>") no-repeat bottom / 100% 100%;
+  pointer-events: none;
+}
+
+/* Subtle drift on hero blur orbs.
+   Slow + small displacement so it never reads like motion or causes vestibular issues.
+   Disabled completely under `prefers-reduced-motion`. */
+@keyframes drift-soft-x {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(20px, -12px, 0); }
+}
+@keyframes drift-soft-y {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-14px, 18px, 0); }
+}
+.drift-x { animation: drift-soft-x 24s ease-in-out infinite; }
+.drift-y { animation: drift-soft-y 30s ease-in-out infinite; }
+
+/* Award badge shimmer — desktop hover only.
+   Touch devices skip it entirely (no hover state). */
+@media (hover: hover) and (pointer: fine) {
+  .award-shimmer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.9s ease;
+  }
+  .award-shimmer:hover::before { transform: translateX(120%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-x, .drift-y { animation: none !important; }
+  .award-shimmer::before { display: none !important; }
 }

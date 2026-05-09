@@ -26,7 +26,7 @@ export default function AwardBadge({
   const p = palettes[variant];
   return (
     <div
-      className="relative shrink-0 w-[160px] h-[180px] grid place-items-center rounded-2xl ring-1 ring-black/5 bg-white shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
+      className="award-shimmer group relative shrink-0 w-[160px] h-[180px] grid place-items-center rounded-2xl ring-1 ring-black/5 bg-white shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 overflow-hidden"
       role="img"
       aria-label={`${title} ${year} — ${region} — ${category}`}
     >

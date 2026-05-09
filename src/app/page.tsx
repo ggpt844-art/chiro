@@ -32,6 +32,10 @@ import GoogleReviewCard from "@/components/GoogleReviewCard";
 import InsurancePlate from "@/components/InsurancePlate";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import NewsletterForm from "@/components/NewsletterForm";
+import SpineDiagram from "@/components/SpineDiagram";
+import CountUp from "@/components/CountUp";
+import Quiz from "@/components/Quiz";
+import { IMAGE_BLUR } from "@/lib/imageBlur";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SINGLE SOURCE OF TRUTH — edit clinic info once, propagates everywhere
@@ -241,9 +245,9 @@ export default function Home() {
 
       {/* ────────────────────────── HERO ────────────────────────── */}
       <section className="relative bg-[#fdfaf4] text-[#1a1a1a] overflow-hidden">
-        {/* Soft brand wash — replaces dark blurs */}
-        <div aria-hidden className="pointer-events-none absolute -top-40 -right-40 w-[460px] h-[460px] rounded-full bg-[#b73026] opacity-[0.08] blur-[120px]" />
-        <div aria-hidden className="pointer-events-none absolute top-1/3 -left-40 w-[360px] h-[360px] rounded-full bg-[#b73026] opacity-[0.06] blur-[120px]" />
+        {/* Soft brand wash — slow drift only, no scroll parallax (vestibular-safe) */}
+        <div aria-hidden className="drift-x pointer-events-none absolute -top-40 -right-40 w-[460px] h-[460px] rounded-full bg-[#b73026] opacity-[0.08] blur-[120px]" />
+        <div aria-hidden className="drift-y pointer-events-none absolute top-1/3 -left-40 w-[360px] h-[360px] rounded-full bg-[#b73026] opacity-[0.06] blur-[120px]" />
 
         {/* Top header — light pill on cream */}
         <header className="relative z-30 flex items-center justify-between gap-4 px-5 md:px-10 pt-5 pb-4">
@@ -252,7 +256,7 @@ export default function Home() {
             <div className="leading-[0.95]">
               <div className="font-black tracking-wide text-[15px] text-[#1a1a1a]">POWERFLOW</div>
               <div className="text-[#b73026] text-[9px] tracking-[0.3em] font-bold mt-0.5">CHIROPRACTIC</div>
-              <div className="text-[#4a4a4a] text-[8px] tracking-wider mt-0.5">Dr. Sandy Bhasin &amp; Associates</div>
+              <div className="text-[#2c2c2c] text-[8px] tracking-wider mt-0.5">Dr. Sandy Bhasin &amp; Associates</div>
             </div>
           </Link>
 
@@ -297,7 +301,7 @@ export default function Home() {
               You don&apos;t have to{" "}
               <span className="text-[#b73026] italic">live in pain.</span>
             </h1>
-            <p className="mt-7 text-[#4a4a4a] text-[16px] sm:text-[17px] leading-relaxed max-w-lg mx-auto">
+            <p className="mt-7 text-[#2c2c2c] text-[16px] sm:text-[17px] leading-relaxed max-w-lg mx-auto">
               <strong className="text-[#1a1a1a]">{CLINIC.patientCount} Mississauga patients adjusted</strong> by {CLINIC.doctor.name} since {CLINIC.yearFounded}. Gentle, scientific chiropractic care for the whole family — most new patients feel relief their first visit.
             </p>
 
@@ -323,7 +327,7 @@ export default function Home() {
             </div>
 
             {/* Urgency strip */}
-            <div className="mt-5 inline-flex items-center gap-3 text-[12.5px] text-[#4a4a4a]">
+            <div className="mt-5 inline-flex items-center gap-3 text-[12.5px] text-[#2c2c2c]">
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[#7d9070] opacity-75 animate-ping" />
@@ -336,11 +340,11 @@ export default function Home() {
             </div>
 
             {/* Mini value-stack chips */}
-            <ul className="mt-6 flex flex-wrap justify-center gap-1.5 text-[11.5px] text-[#4a4a4a]">
+            <ul className="mt-6 flex flex-wrap justify-center gap-1.5 text-[11.5px] text-[#2c2c2c]">
               {valueStack.map((v) => (
                 <li key={v.label} className="inline-flex items-center gap-1.5 rounded-full bg-white ring-1 ring-black/5 px-2.5 py-1 shadow-sm">
                   <Check size={11} className="text-[#7d9070]" />
-                  {v.label} <span className="text-[#4a4a4a]/50 line-through ml-0.5">{v.value}</span>
+                  {v.label} <span className="text-[#2c2c2c]/50 line-through ml-0.5">{v.value}</span>
                 </li>
               ))}
             </ul>
@@ -370,11 +374,47 @@ export default function Home() {
               <div className="flex items-center gap-1 text-[#b73026] text-sm font-bold">
                 <Star size={14} fill="currentColor" />
                 {CLINIC.rating} / 5
-                <span className="text-[#4a4a4a]/70 font-normal text-[11px] ml-1">({CLINIC.reviewCount}+)</span>
+                <span className="text-[#2c2c2c]/70 font-normal text-[11px] ml-1">({CLINIC.reviewCount}+)</span>
               </div>
             </div>
           </Reveal>
         </div>
+      </section>
+
+      {/* ────────────────────────── BY THE NUMBERS (truth-grounded trust strip) ────────────────────────── */}
+      <section
+        aria-label="Powerflow Chiropractic by the numbers"
+        className="relative bg-white border-y border-black/5 px-5 py-10"
+      >
+        <ul className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 text-center">
+          {[
+            {
+              value: <CountUp to={12000} duration={1400} suffix="+" />,
+              label: "Patient adjustments",
+            },
+            {
+              value: <CountUp to={10} duration={900} suffix="+ yrs" />,
+              label: "Serving Mississauga",
+            },
+            {
+              value: <CountUp to={CLINIC.rating} duration={1100} decimals={1} />,
+              label: `Google rating · ${CLINIC.reviewCount}+ reviews`,
+            },
+            {
+              value: "Same-week",
+              label: "Most new patients seen within days",
+            },
+          ].map((stat) => (
+            <li key={stat.label} className="flex flex-col items-center px-2">
+              <div className="font-display text-[30px] sm:text-[36px] font-black text-[#b73026] leading-none">
+                {stat.value}
+              </div>
+              <div className="mt-2 text-[12px] sm:text-[13px] text-[#2c2c2c] uppercase tracking-wider font-semibold leading-snug max-w-[160px]">
+                {stat.label}
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* ────────────────────────── AWARDS STRIP ────────────────────────── */}
@@ -410,6 +450,8 @@ export default function Home() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 600px"
+                  placeholder="blur"
+                  blurDataURL={IMAGE_BLUR}
                 />
               </div>
               <div className="p-7 md:p-10 flex flex-col justify-center">
@@ -420,10 +462,10 @@ export default function Home() {
                   Consumer Choice Award<br />
                   <span className="text-[#b73026]">Peel Region · Chiropractor</span>
                 </h3>
-                <p className="mt-4 text-[#4a4a4a] text-[14.5px] leading-relaxed">
+                <p className="mt-4 text-[#2c2c2c] text-[14.5px] leading-relaxed">
                   Voted by patients across the Peel Region as the top chiropractic office for excellence in care, professionalism, and patient outcomes.
                 </p>
-                <p className="mt-2 text-[#4a4a4a]/70 text-[13px] leading-relaxed">
+                <p className="mt-2 text-[#2c2c2c]/70 text-[13px] leading-relaxed">
                   One of {awards.length} regional and provincial awards earned by Powerflow Chiropractic since {CLINIC.yearFounded}.
                 </p>
               </div>
@@ -465,7 +507,7 @@ export default function Home() {
           <h2 className="text-[34px] sm:text-[42px] font-black leading-[1.05] tracking-tight">
             Let us take care of your <span className="text-[#b73026]">spine</span>
           </h2>
-          <p className="mt-5 text-[#4a4a4a] text-[16px] leading-relaxed">
+          <p className="mt-5 text-[#2c2c2c] text-[16px] leading-relaxed">
             Experience simple, stress-free chiropractic care for the whole
             family at Powerflow Chiropractic in Mississauga. From routine
             spinal check-ups to long-term wellness plans, we make staying
@@ -481,6 +523,8 @@ export default function Home() {
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 480px"
+              placeholder="blur"
+              blurDataURL={IMAGE_BLUR}
             />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
               <span className="rounded-full bg-white/95 backdrop-blur px-3 py-1.5 text-[11px] font-bold tracking-wider uppercase text-[#b73026]">
@@ -518,6 +562,8 @@ export default function Home() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 480px"
+                  placeholder="blur"
+                  blurDataURL={IMAGE_BLUR}
                   priority
                 />
               </div>
@@ -528,24 +574,30 @@ export default function Home() {
                 <h3 className="font-display text-[26px] font-black leading-tight">
                   {CLINIC.doctor.name}, {CLINIC.doctor.credentials}
                 </h3>
-                <p className="text-[#4a4a4a] text-[14px] mt-1.5 font-medium">
+                <p className="text-[#2c2c2c] text-[14px] mt-1.5 font-medium">
                   {CLINIC.doctor.title}
                 </p>
-                <p className="text-[#4a4a4a] text-[15px] mt-5 leading-relaxed">
+                <p className="text-[#2c2c2c] text-[15px] mt-5 leading-relaxed">
                   Dr. Sandy has been delivering specific, scientific chiropractic care to the Mississauga community for over a decade. He believes everyone deserves a strong nervous system and a life of motion — and he&apos;s adjusted <strong className="text-[#1a1a1a]">{CLINIC.patientCount} patients</strong> to prove it.
                 </p>
                 <div className="mt-6 grid grid-cols-3 divide-x divide-black/10 rounded-2xl bg-[#fdfaf4] py-4">
                   <div>
-                    <div className="font-display text-[24px] font-black text-[#b73026] leading-none">12k+</div>
-                    <div className="text-[10.5px] text-[#4a4a4a] tracking-wider uppercase font-semibold mt-1">Patients</div>
+                    <div className="font-display text-[24px] font-black text-[#b73026] leading-none">
+                      <CountUp to={12} duration={1100} suffix="k+" />
+                    </div>
+                    <div className="text-[10.5px] text-[#2c2c2c] tracking-wider uppercase font-semibold mt-1">Patients</div>
                   </div>
                   <div>
-                    <div className="font-display text-[24px] font-black text-[#b73026] leading-none">10+</div>
-                    <div className="text-[10.5px] text-[#4a4a4a] tracking-wider uppercase font-semibold mt-1">Years</div>
+                    <div className="font-display text-[24px] font-black text-[#b73026] leading-none">
+                      <CountUp to={10} duration={900} suffix="+" />
+                    </div>
+                    <div className="text-[10.5px] text-[#2c2c2c] tracking-wider uppercase font-semibold mt-1">Years</div>
                   </div>
                   <div>
-                    <div className="font-display text-[24px] font-black text-[#b73026] leading-none">{CLINIC.rating}</div>
-                    <div className="text-[10.5px] text-[#4a4a4a] tracking-wider uppercase font-semibold mt-1">Rating</div>
+                    <div className="font-display text-[24px] font-black text-[#b73026] leading-none">
+                      <CountUp to={CLINIC.rating} duration={1100} decimals={1} />
+                    </div>
+                    <div className="text-[10.5px] text-[#2c2c2c] tracking-wider uppercase font-semibold mt-1">Rating</div>
                   </div>
                 </div>
                 <a
@@ -571,7 +623,7 @@ export default function Home() {
             <h2 className="text-[34px] sm:text-[42px] font-black leading-[1.05] tracking-tight">
               Your <span className="text-[#b73026]">First Visit</span>
             </h2>
-            <p className="mt-4 text-[#4a4a4a] text-[15px] leading-relaxed">
+            <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed">
               Simple, calm, and stress-free. Here&apos;s exactly what happens
               from the moment you book.
             </p>
@@ -595,7 +647,7 @@ export default function Home() {
                     <h3 className="font-bold text-[18px] leading-tight">
                       {step.title}
                     </h3>
-                    <p className="text-[#4a4a4a] text-[14px] mt-1.5 leading-relaxed">
+                    <p className="text-[#2c2c2c] text-[14px] mt-1.5 leading-relaxed">
                       {step.blurb}
                     </p>
                   </div>
@@ -638,13 +690,94 @@ export default function Home() {
                 </span>
                 <div>
                   <h3 className="font-bold text-[17px]">{f.title}</h3>
-                  <p className="text-[#4a4a4a] text-[14px] mt-1.5 leading-relaxed">
+                  <p className="text-[#2c2c2c] text-[14px] mt-1.5 leading-relaxed">
                     {f.blurb}
                   </p>
                 </div>
               </div>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ────────────────────────── WHAT WE TREAT (spine diagram) ────────────────────────── */}
+      <section id="what-we-treat" className="px-5 py-20 bg-[#fdfaf4]">
+        <div className="max-w-md mx-auto text-center mb-10">
+          <Reveal>
+            <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+              What We Treat
+            </p>
+            <h2 className="font-display text-[34px] sm:text-[42px] font-black leading-[1.05] tracking-tight">
+              Where it hurts — <span className="text-[#b73026] italic">we can help</span>.
+            </h2>
+            <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed">
+              Most people we see come in with one of these four areas. Tap the
+              region closest to your pain and we&apos;ll walk you through what
+              to expect.
+            </p>
+          </Reveal>
+        </div>
+        <Reveal delay={150}>
+          <div className="max-w-2xl mx-auto rounded-[28px] bg-white ring-1 ring-black/5 shadow-sm p-6 sm:p-10">
+            <SpineDiagram />
+          </div>
+        </Reveal>
+        <Reveal delay={300}>
+          <div className="mt-8 max-w-md mx-auto text-center">
+            <a
+              href={`tel:${CLINIC.phone}`}
+              className="inline-flex items-center gap-2 rounded-full bg-[#b73026] text-white px-7 py-3.5 font-bold text-sm hover:bg-[#8e1f17] transition-colors shadow-md shadow-[#b73026]/20"
+            >
+              <Phone size={16} />
+              Talk to Dr. Sandy about your area
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ────────────────────────── NO-PRESSURE PROMISE (anxiety relief) ────────────────────────── */}
+      <section id="promise" className="px-5 py-16 bg-white border-y border-black/5">
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold text-center mb-3">
+              Our Promise
+            </p>
+            <h2 className="text-center font-display text-[28px] sm:text-[34px] font-black leading-tight tracking-tight">
+              No surprises. <span className="text-[#b73026] italic">No pressure.</span>
+            </h2>
+            <p className="mt-4 text-center text-[#2c2c2c] text-[15px] max-w-md mx-auto leading-relaxed">
+              We know patients have been burned before. Here is what you will{" "}
+              <strong className="text-[#1a1a1a]">never</strong> get from us.
+            </p>
+          </Reveal>
+          <ul className="mt-9 grid sm:grid-cols-3 gap-4">
+            {[
+              {
+                title: "No long-term contracts",
+                body: "Pay-as-you-go. No 3-year plans, no buy-in fees, no commitments. Stop any time.",
+              },
+              {
+                title: "No high-pressure sales",
+                body: "Dr. Sandy will recommend a plan, then leave the decision to you. Take it home, sleep on it.",
+              },
+              {
+                title: "No upselling",
+                body: "If chiropractic isn't right for you, we'll tell you and refer you to someone who is.",
+              },
+            ].map((p, i) => (
+              <Reveal key={p.title} delay={i * 100} as="li">
+                <div className="rounded-2xl bg-[#fdfaf4] ring-1 ring-black/5 p-6 h-full">
+                  <span className="grid place-items-center w-10 h-10 mb-4 rounded-full bg-[#b73026]/10 text-[#b73026]">
+                    <Check size={18} strokeWidth={2.5} />
+                  </span>
+                  <h3 className="font-bold text-[16.5px] text-[#1a1a1a]">{p.title}</h3>
+                  <p className="text-[#2c2c2c] text-[14px] mt-1.5 leading-relaxed">
+                    {p.body}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -659,7 +792,7 @@ export default function Home() {
               We accept most major{" "}
               <span className="text-[#b73026]">insurance plans</span>
             </h2>
-            <p className="mt-4 text-[#4a4a4a] text-[15px] leading-relaxed">
+            <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed">
               No surprises at checkout. We&apos;ll verify your benefits and
               bill your provider directly when possible.
             </p>
@@ -669,7 +802,7 @@ export default function Home() {
           <div className="mt-8 max-w-2xl mx-auto">
             <InsurancePlate />
           </div>
-          <p className="mt-6 text-center text-[13px] text-[#4a4a4a]">
+          <p className="mt-6 text-center text-[13px] text-[#2c2c2c]">
             Don&apos;t see your provider?{" "}
             <a
               href={`tel:${CLINIC.phone}`}
@@ -704,11 +837,13 @@ export default function Home() {
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, 480px"
+                    placeholder="blur"
+                    blurDataURL={IMAGE_BLUR}
                   />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{s.title}</h3>
-                  <p className="text-[#4a4a4a] text-[14px] mt-2 leading-relaxed">
+                  <p className="text-[#2c2c2c] text-[14px] mt-2 leading-relaxed">
                     {s.blurb}
                   </p>
                   <a
@@ -738,7 +873,7 @@ export default function Home() {
               >
                 <div>
                   <div className="font-semibold text-[15px] text-[#1a1a1a]">{t.title}</div>
-                  <div className="text-[#4a4a4a] text-[13px] mt-0.5">
+                  <div className="text-[#2c2c2c] text-[13px] mt-0.5">
                     {t.blurb}
                   </div>
                 </div>
@@ -770,7 +905,7 @@ export default function Home() {
             <span className="text-[13px] font-bold text-[#1a1a1a]">
               {CLINIC.rating} on Google
             </span>
-            <span className="text-[12px] text-[#4a4a4a]">
+            <span className="text-[12px] text-[#2c2c2c]">
               · {CLINIC.reviewCount}+ reviews
             </span>
           </div>
@@ -806,6 +941,26 @@ export default function Home() {
         </Reveal>
       </section>
 
+      {/* ────────────────────────── QUIZ — optional, ultra-short ────────────────────────── */}
+      <section
+        id="quiz"
+        className="px-5 py-16 bg-[#fdfaf4] border-y border-black/5"
+      >
+        <Reveal>
+          <div className="max-w-md mx-auto text-center mb-6">
+            <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+              Not sure if it&apos;s for you?
+            </p>
+            <h2 className="font-display text-[28px] sm:text-[32px] font-black leading-tight tracking-tight">
+              Take a 30-second check.
+            </h2>
+          </div>
+        </Reveal>
+        <Reveal delay={150}>
+          <Quiz phone={CLINIC.phone} phoneDisplay={CLINIC.phoneDisplay} />
+        </Reveal>
+      </section>
+
       {/* ────────────────────────── INSTAGRAM ────────────────────────── */}
       <section id="instagram" className="px-5 py-20 bg-[#fdfaf4] text-[#1a1a1a]">
         <div className="max-w-md mx-auto text-center">
@@ -820,7 +975,7 @@ export default function Home() {
               href={CLINIC.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-2 text-[#4a4a4a] text-[14px] hover:text-[#b73026] transition-colors"
+              className="mt-3 inline-flex items-center gap-2 text-[#2c2c2c] text-[14px] hover:text-[#b73026] transition-colors"
             >
               <InstagramIcon size={16} />
               @powerflow.chiropractic
@@ -870,7 +1025,7 @@ export default function Home() {
       {/* ────────────────────────── BOOK CTA — sole bold red moment ────────────────────────── */}
       <section
         id="book"
-        className="px-5 py-20 bg-[#b73026] text-white relative overflow-hidden"
+        className="divider-curve-down px-5 py-20 bg-[#b73026] text-white relative overflow-hidden"
       >
         <div className="absolute inset-0 opacity-25 pointer-events-none">
           <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white blur-3xl" />
@@ -911,7 +1066,7 @@ export default function Home() {
               Text Us to Book
             </a>
           </div>
-          <p className="mt-6 text-white/60 text-[12.5px]">
+          <p className="mt-6 text-white/85 text-[12.5px]">
             <Zap size={11} className="inline mr-1" />
             Most new patients seen within the week. Free parking on site.
           </p>
@@ -928,7 +1083,7 @@ export default function Home() {
             <h2 className="font-display text-[36px] sm:text-[42px] font-black leading-[1.05] tracking-tight">
               The <span className="text-[#b73026] italic">Powerflow</span> Blog
             </h2>
-            <p className="mt-4 text-[#4a4a4a] text-[15px] leading-relaxed max-w-lg mx-auto">
+            <p className="mt-4 text-[#2c2c2c] text-[15px] leading-relaxed max-w-lg mx-auto">
               Practical posture, sleep, desk-setup, and recovery guides from Dr. Sandy. We&apos;re writing them now — drop your email and we&apos;ll send the first three when they go live.
             </p>
           </Reveal>
@@ -959,7 +1114,7 @@ export default function Home() {
       </section>
 
       {/* ────────────────────────── FAQ ────────────────────────── */}
-      <section id="faq" className="px-5 py-20 bg-[#fdfaf4]">
+      <section id="faq" className="divider-curve-down relative px-5 py-20 bg-[#fdfaf4]">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-10">
             <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
@@ -996,7 +1151,7 @@ export default function Home() {
                 <Phone size={18} />
               </span>
               <div>
-                <div className="text-white/55 text-[12px] uppercase tracking-wider">
+                <div className="text-white/80 text-[12px] uppercase tracking-wider">
                   Phone
                 </div>
                 <div className="font-semibold">{CLINIC.phoneDisplay}</div>
@@ -1012,7 +1167,7 @@ export default function Home() {
                 <MessageCircle size={18} />
               </span>
               <div>
-                <div className="text-white/55 text-[12px] uppercase tracking-wider">
+                <div className="text-white/80 text-[12px] uppercase tracking-wider">
                   WhatsApp
                 </div>
                 <div className="font-semibold">Chat with the front desk</div>
@@ -1026,7 +1181,7 @@ export default function Home() {
                 <Mail size={18} />
               </span>
               <div>
-                <div className="text-white/55 text-[12px] uppercase tracking-wider">
+                <div className="text-white/80 text-[12px] uppercase tracking-wider">
                   Email
                 </div>
                 <div className="font-semibold">{CLINIC.email}</div>
@@ -1042,22 +1197,23 @@ export default function Home() {
                 <MapPin size={18} />
               </span>
               <div>
-                <div className="text-white/55 text-[12px] uppercase tracking-wider">
+                <div className="text-white/80 text-[12px] uppercase tracking-wider">
                   Address
                 </div>
                 <div className="font-semibold leading-tight">
                   {CLINIC.address.line1}
                   <br />
-                  <span className="text-white/70 text-sm font-normal">
+                  <span className="text-white/85 text-sm font-normal">
                     {CLINIC.address.line2}
                   </span>
                   <br />
-                  <span className="text-white/55 text-[12px] font-normal">
-                    Free patient parking · Square One area
+                  <span className="text-white/80 text-[12px] font-normal block mt-1.5">
+                    Free patient parking on site · Wheelchair-accessible entrance ·
+                    Suite 143 in the City Centre Drive medical building (Square One area)
                   </span>
                 </div>
               </div>
-              <ChevronRight size={18} className="ml-auto text-white/40 self-center" />
+              <ChevronRight size={18} className="ml-auto text-white/75 self-center" />
             </a>
           </div>
 
@@ -1103,7 +1259,7 @@ export default function Home() {
                   <span className="text-white/70">{h.day}</span>
                   <span
                     className={`font-semibold ${
-                      h.time === "Closed" ? "text-white/40" : "text-white"
+                      h.time === "Closed" ? "text-white/75" : "text-white"
                     }`}
                   >
                     {h.time}
@@ -1127,7 +1283,7 @@ export default function Home() {
           </div>
 
           {/* Bottom strip */}
-          <div className="mt-12 pt-6 border-t border-white/10 text-center text-white/45 text-xs">
+          <div className="mt-12 pt-6 border-t border-white/10 text-center text-white/75 text-xs">
             © 2026 Powerflow Chiropractic. All rights reserved.
           </div>
         </div>
