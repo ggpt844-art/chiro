@@ -34,24 +34,24 @@ export default function MobileMenu({ phone, phoneDisplay, whatsapp }: Props) {
         onClick={() => setOpen(true)}
         aria-label="Open menu"
         aria-expanded={open}
-        className="grid place-items-center w-11 h-11 rounded-full hover:bg-white/5 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a93b]"
+        className="grid place-items-center w-11 h-11 rounded-full hover:bg-[#1a1a1a]/5 text-[#1a1a1a] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b73026]"
       >
         <Menu size={26} />
       </button>
 
       {open && (
         <div
-          className="fixed inset-0 z-50 bg-[#1a1a1a]/97 backdrop-blur-sm flex flex-col p-6 overflow-y-auto"
+          className="fixed inset-0 z-50 bg-[#fdfaf4] flex flex-col p-6 overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-label="Navigation menu"
         >
           <div className="flex items-center justify-between mb-10">
-            <LionMark size={36} withWordmark inverted />
+            <LionMark size={42} withWordmark />
             <button
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="grid place-items-center w-11 h-11 rounded-full bg-white/5 hover:bg-white/10 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a93b]"
+              className="grid place-items-center w-11 h-11 rounded-full bg-[#1a1a1a]/5 hover:bg-[#1a1a1a]/10 text-[#1a1a1a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b73026]"
             >
               <X size={24} />
             </button>
@@ -62,11 +62,11 @@ export default function MobileMenu({ phone, phoneDisplay, whatsapp }: Props) {
                 key={link.label}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="py-3.5 text-2xl font-semibold text-white/90 hover:text-[#f2a93b] transition-colors border-b border-white/10 flex items-center justify-between"
+                className="py-3.5 text-2xl font-semibold text-[#1a1a1a]/90 hover:text-[#b73026] transition-colors border-b border-black/10 flex items-center justify-between"
               >
                 <span>{link.label}</span>
                 {link.tag && (
-                  <span className="text-[10px] text-[#f2a93b]/80 bg-[#f2a93b]/10 px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">
+                  <span className="text-[10px] text-[#b73026] bg-[#b73026]/10 px-2 py-0.5 rounded-full uppercase tracking-wider font-bold">
                     {link.tag}
                   </span>
                 )}
@@ -77,7 +77,7 @@ export default function MobileMenu({ phone, phoneDisplay, whatsapp }: Props) {
             <a
               href={`tel:${phone}`}
               onClick={() => setOpen(false)}
-              className="rounded-full bg-[#f2a93b] text-[#1a1a1a] px-6 py-4 text-base font-bold flex items-center justify-center gap-2"
+              className="rounded-full bg-[#b73026] text-white px-6 py-4 text-base font-bold flex items-center justify-center gap-2 shadow-lg shadow-[#b73026]/20"
             >
               <Phone size={18} />
               {phoneDisplay}

@@ -58,7 +58,7 @@ export default function HeroVideo({ src, poster, className = "" }: Props) {
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause video" : "Play video"}
-        className="absolute top-4 right-4 grid place-items-center w-10 h-10 rounded-full bg-black/50 backdrop-blur-md text-white ring-1 ring-white/15 hover:bg-black/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a93b]"
+        className="absolute top-4 right-4 grid place-items-center w-10 h-10 rounded-full bg-black/50 backdrop-blur-md text-white ring-1 ring-white/15 hover:bg-black/70 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b73026]"
       >
         {playing ? <Pause size={16} /> : <Play size={16} className="ml-0.5" />}
       </button>

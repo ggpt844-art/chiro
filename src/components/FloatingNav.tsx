@@ -30,26 +30,26 @@ export default function FloatingNav({ phone }: Props) {
           : "opacity-0 -translate-y-4 pointer-events-none"
       }`}
     >
-      <div className="flex items-center justify-between gap-2 rounded-full border border-[#b73026]/30 bg-[#1a1a1a]/85 backdrop-blur-md px-3 py-2 shadow-2xl">
+      <div className="flex items-center justify-between gap-2 rounded-full border border-black/5 bg-white/95 backdrop-blur-md px-3 py-2 shadow-xl shadow-black/10">
         <a
           href="#top"
           aria-label="Powerflow Chiropractic — back to top"
-          className="flex items-center gap-2 pl-1 pr-2 text-white"
+          className="flex items-center gap-2 pl-1 pr-2 text-[#1a1a1a]"
         >
-          <LionMark size={28} inverted />
+          <LionMark size={30} />
           <span className="text-[14px] font-bold tracking-tight">Home</span>
         </a>
         <div className="flex items-center gap-2">
           <a
             href="#book"
-            className="rounded-full border border-[#f2a93b] text-[#f2a93b] px-3.5 py-1.5 text-[13px] font-semibold hover:bg-[#f2a93b]/10 transition-colors flex items-center gap-1.5"
+            className="rounded-full border border-[#b73026] text-[#b73026] px-3.5 py-1.5 text-[13px] font-semibold hover:bg-[#b73026]/5 transition-colors flex items-center gap-1.5"
           >
             <Calendar size={13} />
             Book
           </a>
           <a
             href={`tel:${phone}`}
-            className="rounded-full bg-[#f2a93b] text-[#1a1a1a] px-3.5 py-1.5 text-[13px] font-bold hover:bg-[#d8902a] transition-colors flex items-center gap-1.5"
+            className="rounded-full bg-[#b73026] text-white px-3.5 py-1.5 text-[13px] font-bold hover:bg-[#8e1f17] transition-colors flex items-center gap-1.5"
             aria-label="Call Powerflow Chiropractic"
           >
             <Phone size={13} />

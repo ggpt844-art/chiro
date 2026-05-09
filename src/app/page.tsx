@@ -240,26 +240,26 @@ export default function Home() {
       <StickyMobileCTA phone={CLINIC.phone} phoneDisplay={CLINIC.phoneDisplay} />
 
       {/* ────────────────────────── HERO ────────────────────────── */}
-      <section className="relative bg-[#1a1a1a] text-white overflow-hidden bg-noise">
-        {/* Decorative blurs */}
-        <div aria-hidden className="pointer-events-none absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full bg-[#b73026] opacity-30 blur-[120px]" />
-        <div aria-hidden className="pointer-events-none absolute top-1/3 -left-40 w-[320px] h-[320px] rounded-full bg-[#f2a93b] opacity-15 blur-[120px]" />
+      <section className="relative bg-[#fdfaf4] text-[#1a1a1a] overflow-hidden">
+        {/* Soft brand wash — replaces dark blurs */}
+        <div aria-hidden className="pointer-events-none absolute -top-40 -right-40 w-[460px] h-[460px] rounded-full bg-[#b73026] opacity-[0.08] blur-[120px]" />
+        <div aria-hidden className="pointer-events-none absolute top-1/3 -left-40 w-[360px] h-[360px] rounded-full bg-[#b73026] opacity-[0.06] blur-[120px]" />
 
-        {/* Top header */}
+        {/* Top header — light pill on cream */}
         <header className="relative z-30 flex items-center justify-between gap-4 px-5 md:px-10 pt-5 pb-4">
           <Link href="#top" aria-label="Powerflow Chiropractic — home" className="flex items-center gap-3">
-            <LionMark size={42} inverted />
+            <LionMark size={48} />
             <div className="leading-[0.95]">
-              <div className="font-black tracking-wide text-[15px]">POWERFLOW</div>
-              <div className="text-[#f2a93b] text-[9px] tracking-[0.3em] font-bold mt-0.5">CHIROPRACTIC</div>
-              <div className="text-white/50 text-[8px] tracking-wider mt-0.5">Dr. Sandy Bhasin &amp; Associates</div>
+              <div className="font-black tracking-wide text-[15px] text-[#1a1a1a]">POWERFLOW</div>
+              <div className="text-[#b73026] text-[9px] tracking-[0.3em] font-bold mt-0.5">CHIROPRACTIC</div>
+              <div className="text-[#4a4a4a] text-[8px] tracking-wider mt-0.5">Dr. Sandy Bhasin &amp; Associates</div>
             </div>
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-7 text-[14px] font-semibold text-white/80">
+          <nav className="hidden lg:flex items-center gap-7 text-[14px] font-semibold text-[#1a1a1a]/75">
             {navLinks.map((l) => (
-              <a key={l.label} href={l.href} className="hover:text-[#f2a93b] transition-colors">
+              <a key={l.label} href={l.href} className="hover:text-[#b73026] transition-colors">
                 {l.label}
               </a>
             ))}
@@ -277,7 +277,7 @@ export default function Home() {
             </a>
             <a
               href="#book"
-              className="hidden sm:inline-flex rounded-full bg-[#f2a93b] text-[#1a1a1a] px-5 py-2.5 text-sm font-bold hover:bg-[#d8902a] transition-colors items-center gap-2"
+              className="hidden sm:inline-flex rounded-full bg-[#b73026] text-white px-5 py-2.5 text-sm font-bold hover:bg-[#8e1f17] transition-colors items-center gap-2 shadow-md shadow-[#b73026]/20"
             >
               <Calendar size={15} />
               Book Now
@@ -289,33 +289,33 @@ export default function Home() {
         {/* Hero content */}
         <div className="relative px-5 pt-8 md:pt-14 pb-14 lg:pb-24">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-[#f2a93b] font-bold mb-7">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white border border-[#b73026]/20 px-3.5 py-1.5 text-[11px] tracking-widest uppercase text-[#b73026] font-bold mb-7 shadow-sm">
               <Sparkles size={12} />
               Voted #1 in Mississauga · 7 years running
             </div>
             <h1 className="font-display text-[48px] sm:text-[64px] md:text-[76px] leading-[0.98] font-black tracking-[-0.02em]">
               You don&apos;t have to{" "}
-              <span className="text-[#f2a93b] italic">live in pain.</span>
+              <span className="text-[#b73026] italic">live in pain.</span>
             </h1>
-            <p className="mt-7 text-white/75 text-[16px] sm:text-[17px] leading-relaxed max-w-lg mx-auto">
-              <strong className="text-white">{CLINIC.patientCount} Mississauga patients adjusted</strong> by {CLINIC.doctor.name} since {CLINIC.yearFounded}. Gentle, scientific chiropractic care for the whole family — most new patients feel relief their first visit.
+            <p className="mt-7 text-[#4a4a4a] text-[16px] sm:text-[17px] leading-relaxed max-w-lg mx-auto">
+              <strong className="text-[#1a1a1a]">{CLINIC.patientCount} Mississauga patients adjusted</strong> by {CLINIC.doctor.name} since {CLINIC.yearFounded}. Gentle, scientific chiropractic care for the whole family — most new patients feel relief their first visit.
             </p>
 
             {/* CTA + value-stack */}
             <div className="mt-9 grid sm:grid-cols-[auto_auto] gap-3 justify-center items-center">
               <a
                 href="#book"
-                className="group rounded-full bg-[#f2a93b] text-[#1a1a1a] px-7 py-4 font-bold text-[15px] inline-flex items-center justify-center gap-2 hover:bg-[#d8902a] transition-all shadow-xl shadow-[#f2a93b]/30 hover:shadow-[#f2a93b]/50 hover:-translate-y-0.5"
+                className="group rounded-full bg-[#b73026] text-white px-7 py-4 font-bold text-[15px] inline-flex items-center justify-center gap-2 hover:bg-[#8e1f17] transition-all shadow-xl shadow-[#b73026]/25 hover:shadow-[#b73026]/40 hover:-translate-y-0.5"
               >
                 <Calendar size={18} />
                 Claim Free Spinal Check-up
-                <span className="hidden sm:inline-block ml-1 text-[12px] font-black bg-[#1a1a1a] text-[#f2a93b] rounded-full px-2 py-0.5 tracking-wider">
+                <span className="hidden sm:inline-block ml-1 text-[12px] font-black bg-white text-[#b73026] rounded-full px-2 py-0.5 tracking-wider">
                   $190 VALUE
                 </span>
               </a>
               <a
                 href={`tel:${CLINIC.phone}`}
-                className="rounded-full border border-white/25 text-white px-6 py-4 font-semibold text-[15px] inline-flex items-center justify-center gap-2 hover:bg-white/5 transition-colors"
+                className="rounded-full border border-[#1a1a1a]/20 text-[#1a1a1a] px-6 py-4 font-semibold text-[15px] inline-flex items-center justify-center gap-2 hover:bg-[#1a1a1a]/5 transition-colors"
               >
                 <Phone size={18} />
                 {CLINIC.phoneDisplay}
@@ -323,24 +323,24 @@ export default function Home() {
             </div>
 
             {/* Urgency strip */}
-            <div className="mt-5 inline-flex items-center gap-3 text-[12.5px] text-white/70">
+            <div className="mt-5 inline-flex items-center gap-3 text-[12.5px] text-[#4a4a4a]">
               <span className="flex items-center gap-1.5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full rounded-full bg-[#7d9070] opacity-75 animate-ping" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-[#7d9070]" />
                 </span>
-                <strong className="text-white">Next available: Tomorrow 11:00 AM</strong>
+                <strong className="text-[#1a1a1a]">Next available: Tomorrow 11:00 AM</strong>
               </span>
               <span aria-hidden className="opacity-30">·</span>
               <span>Only 6 free check-ups this week</span>
             </div>
 
             {/* Mini value-stack chips */}
-            <ul className="mt-6 flex flex-wrap justify-center gap-1.5 text-[11.5px] text-white/65">
+            <ul className="mt-6 flex flex-wrap justify-center gap-1.5 text-[11.5px] text-[#4a4a4a]">
               {valueStack.map((v) => (
-                <li key={v.label} className="inline-flex items-center gap-1.5 rounded-full bg-white/5 ring-1 ring-white/10 px-2.5 py-1">
+                <li key={v.label} className="inline-flex items-center gap-1.5 rounded-full bg-white ring-1 ring-black/5 px-2.5 py-1 shadow-sm">
                   <Check size={11} className="text-[#7d9070]" />
-                  {v.label} <span className="text-white/40 line-through ml-0.5">{v.value}</span>
+                  {v.label} <span className="text-[#4a4a4a]/50 line-through ml-0.5">{v.value}</span>
                 </li>
               ))}
             </ul>
@@ -351,26 +351,26 @@ export default function Home() {
             <HeroVideo
               src="https://videos.pexels.com/video-files/4099268/4099268-hd_1920_1080_25fps.mp4"
               poster="/images/dr-sandy-adjusting.png"
-              className="mt-12 max-w-md lg:max-w-lg mx-auto rounded-[28px] overflow-hidden aspect-[4/5] shadow-2xl shadow-black/40 ring-1 ring-white/10"
+              className="mt-12 max-w-md lg:max-w-lg mx-auto rounded-[28px] overflow-hidden aspect-[4/5] shadow-2xl shadow-black/15 ring-1 ring-black/5"
             />
             <div className="relative max-w-md lg:max-w-lg mx-auto -mt-20 px-6 pb-1 z-10 flex items-end justify-between">
-              <div className="absolute -top-44 left-4 flex items-center gap-2 rounded-full bg-black/60 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold text-white ring-1 ring-white/15">
+              <div className="absolute -top-44 left-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md px-3 py-1.5 text-[11px] font-semibold text-[#1a1a1a] ring-1 ring-black/10 shadow-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#f2a93b] opacity-75 animate-ping" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#f2a93b]" />
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-[#b73026] opacity-75 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[#b73026]" />
                 </span>
                 Now booking
               </div>
-              <div className="flex items-center gap-2 text-white/90 text-sm font-semibold">
-                <span className="grid place-items-center w-9 h-9 rounded-full bg-[#b73026] ring-2 ring-[#1a1a1a]">
+              <div className="flex items-center gap-2 text-[#1a1a1a] text-sm font-semibold">
+                <span className="grid place-items-center w-9 h-9 rounded-full bg-[#b73026] text-white ring-2 ring-[#fdfaf4] shadow-md">
                   <HeartPulse size={16} />
                 </span>
                 Powerflow Clinic · Mississauga
               </div>
-              <div className="flex items-center gap-1 text-[#f2a93b] text-sm font-bold">
+              <div className="flex items-center gap-1 text-[#b73026] text-sm font-bold">
                 <Star size={14} fill="currentColor" />
                 {CLINIC.rating} / 5
-                <span className="text-white/50 font-normal text-[11px] ml-1">({CLINIC.reviewCount}+)</span>
+                <span className="text-[#4a4a4a]/70 font-normal text-[11px] ml-1">({CLINIC.reviewCount}+)</span>
               </div>
             </div>
           </Reveal>
@@ -378,11 +378,11 @@ export default function Home() {
       </section>
 
       {/* ────────────────────────── AWARDS STRIP ────────────────────────── */}
-      <section id="awards" aria-label="Awards and recognition" className="relative bg-[#1a1a1a] text-white pt-2 pb-16 bg-noise">
+      <section id="awards" aria-label="Awards and recognition" className="relative bg-[#f5efe2] text-[#1a1a1a] pt-12 pb-16 border-y border-black/5">
         <div className="max-w-6xl mx-auto px-5">
           <Reveal>
             <div className="text-center mb-8">
-              <p className="text-[#f2a93b] text-[11px] tracking-[0.25em] uppercase font-bold mb-2">
+              <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-2">
                 Recognized &amp; Awarded
               </p>
               <h2 className="font-display text-[28px] sm:text-[34px] font-black leading-tight tracking-tight">
@@ -402,7 +402,7 @@ export default function Home() {
 
           {/* Real photo proof: Dr. Sandy holding the Consumer Choice award */}
           <Reveal delay={400}>
-            <div className="mt-12 max-w-4xl mx-auto rounded-[28px] overflow-hidden bg-[#0e0e0e] ring-1 ring-white/10 grid md:grid-cols-[1.1fr_1fr] items-stretch">
+            <div className="mt-12 max-w-4xl mx-auto rounded-[28px] overflow-hidden bg-white ring-1 ring-black/5 shadow-xl grid md:grid-cols-[1.1fr_1fr] items-stretch">
               <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[360px]">
                 <Image
                   src="/images/dr-sandy-award.png"
@@ -411,20 +411,19 @@ export default function Home() {
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 600px"
                 />
-                <div className="absolute inset-0 md:bg-gradient-to-r md:from-transparent md:to-[#0e0e0e]/40" />
               </div>
               <div className="p-7 md:p-10 flex flex-col justify-center">
-                <p className="text-[#f2a93b] text-[10.5px] tracking-[0.28em] uppercase font-bold mb-3">
+                <p className="text-[#b73026] text-[10.5px] tracking-[0.28em] uppercase font-bold mb-3">
                   Verified · 2021
                 </p>
                 <h3 className="font-display text-[26px] md:text-[30px] font-black leading-tight">
                   Consumer Choice Award<br />
-                  <span className="text-[#f2a93b]">Peel Region · Chiropractor</span>
+                  <span className="text-[#b73026]">Peel Region · Chiropractor</span>
                 </h3>
-                <p className="mt-4 text-white/70 text-[14.5px] leading-relaxed">
+                <p className="mt-4 text-[#4a4a4a] text-[14.5px] leading-relaxed">
                   Voted by patients across the Peel Region as the top chiropractic office for excellence in care, professionalism, and patient outcomes.
                 </p>
-                <p className="mt-2 text-white/50 text-[13px] leading-relaxed">
+                <p className="mt-2 text-[#4a4a4a]/70 text-[13px] leading-relaxed">
                   One of {awards.length} regional and provincial awards earned by Powerflow Chiropractic since {CLINIC.yearFounded}.
                 </p>
               </div>
@@ -433,23 +432,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ────────────────────────── MISSION CARD (overlaps hero) ────────────────────────── */}
+      {/* ────────────────────────── MISSION CARD (overlaps awards) ────────────────────────── */}
       <section className="relative -mt-10 z-10 px-5">
-        <div className="max-w-md mx-auto rounded-3xl bg-[#1a1a1a] text-white p-7 ring-1 ring-[#f2a93b]/20 shadow-2xl shadow-black/30 text-center">
-          <p className="text-[#f2a93b] text-[11px] tracking-[0.25em] uppercase font-semibold mb-3">
+        <div className="max-w-md mx-auto rounded-3xl bg-[#b73026] text-white p-7 shadow-2xl shadow-[#b73026]/20 text-center ring-1 ring-[#b73026]/10">
+          <p className="text-white/80 text-[11px] tracking-[0.25em] uppercase font-semibold mb-3">
             Proudly Canadian · Family Owned
           </p>
-          <h2 className="text-2xl font-bold leading-tight">
+          <h2 className="font-display text-2xl font-black leading-tight">
             Life · Power · Freedom
           </h2>
-          <p className="mt-3 text-white/70 text-[14px] leading-relaxed">
+          <p className="mt-3 text-white/85 text-[14px] leading-relaxed">
             Our mission is to keep your central nervous system strong so your
             body can express its fullest physical, mental, and emotional
             well-being.
           </p>
           <a
             href={`tel:${CLINIC.phone}`}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f2a93b] text-[#1a1a1a] px-6 py-3 font-bold text-sm hover:bg-[#d8902a] transition-colors"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-[#b73026] px-6 py-3 font-bold text-sm hover:bg-[#fdfaf4] transition-colors shadow-md"
           >
             <Phone size={16} />
             Call Now · {CLINIC.phoneDisplay}
@@ -684,20 +683,20 @@ export default function Home() {
       </section>
 
       {/* ────────────────────────── SERVICES ────────────────────────── */}
-      <section id="services" className="px-5 py-20 bg-[#1a1a1a] text-white">
+      <section id="services" className="px-5 py-20 bg-[#fdfaf4] text-[#1a1a1a]">
         <div className="max-w-md mx-auto">
-          <p className="text-[#f2a93b] text-[11px] tracking-[0.25em] uppercase font-bold mb-3 text-center">
+          <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3 text-center">
             Services
           </p>
-          <h2 className="text-[36px] font-black leading-tight tracking-tight text-center">
-            What we <span className="text-[#f2a93b]">help with</span>
+          <h2 className="font-display text-[36px] font-black leading-tight tracking-tight text-center">
+            What we <span className="text-[#b73026] italic">help with</span>
           </h2>
         </div>
 
         <div className="mt-10 max-w-md mx-auto flex flex-col gap-5">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={i * 120} as="article">
-              <div className="group rounded-3xl overflow-hidden bg-[#222] ring-1 ring-white/5 hover:ring-[#f2a93b]/40 hover:-translate-y-1 transition-all duration-300">
+              <div className="group rounded-3xl overflow-hidden bg-white ring-1 ring-black/5 shadow-sm hover:ring-[#b73026]/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <Image
                     src={s.image}
@@ -706,16 +705,15 @@ export default function Home() {
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                     sizes="(max-width: 768px) 100vw, 480px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold">{s.title}</h3>
-                  <p className="text-white/65 text-[14px] mt-2 leading-relaxed">
+                  <p className="text-[#4a4a4a] text-[14px] mt-2 leading-relaxed">
                     {s.blurb}
                   </p>
                   <a
                     href="#book"
-                    className="mt-4 inline-flex items-center gap-1 text-[#f2a93b] font-semibold text-sm group-hover:gap-2 transition-all"
+                    className="mt-4 inline-flex items-center gap-1 text-[#b73026] font-semibold text-sm group-hover:gap-2 transition-all"
                   >
                     Book an appointment
                     <ChevronRight size={16} />
@@ -728,25 +726,25 @@ export default function Home() {
 
         {/* Treatments grid */}
         <div className="mt-14 max-w-md mx-auto">
-          <h3 className="text-2xl font-bold text-center mb-6">
-            Common <span className="text-[#f2a93b]">Treatments</span>
+          <h3 className="font-display text-2xl font-bold text-center mb-6">
+            Common <span className="text-[#b73026] italic">Treatments</span>
           </h3>
           <div className="grid grid-cols-1 gap-3">
             {treatments.map((t) => (
               <a
                 key={t.title}
                 href="#book"
-                className="group flex items-center justify-between gap-4 rounded-2xl bg-white/5 hover:bg-white/10 ring-1 ring-white/10 px-5 py-4 transition-colors"
+                className="group flex items-center justify-between gap-4 rounded-2xl bg-white hover:bg-[#fdfaf4] ring-1 ring-black/5 hover:ring-[#b73026]/30 px-5 py-4 transition-all shadow-sm hover:shadow-md"
               >
                 <div>
-                  <div className="font-semibold text-[15px]">{t.title}</div>
-                  <div className="text-white/55 text-[13px] mt-0.5">
+                  <div className="font-semibold text-[15px] text-[#1a1a1a]">{t.title}</div>
+                  <div className="text-[#4a4a4a] text-[13px] mt-0.5">
                     {t.blurb}
                   </div>
                 </div>
                 <ChevronRight
                   size={18}
-                  className="shrink-0 text-[#f2a93b] group-hover:translate-x-1 transition-transform"
+                  className="shrink-0 text-[#b73026] group-hover:translate-x-1 transition-transform"
                 />
               </a>
             ))}
@@ -809,18 +807,20 @@ export default function Home() {
       </section>
 
       {/* ────────────────────────── INSTAGRAM ────────────────────────── */}
-      <section id="instagram" className="px-5 py-20 bg-[#1a1a1a] text-white">
+      <section id="instagram" className="px-5 py-20 bg-[#fdfaf4] text-[#1a1a1a]">
         <div className="max-w-md mx-auto text-center">
           <Reveal>
-            <p className="text-[#f2a93b] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
+            <p className="text-[#b73026] text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
               Follow Along
             </p>
-            <h2 className="text-[32px] font-black leading-tight tracking-tight">
-              On <span className="text-[#f2a93b]">Instagram</span>
+            <h2 className="font-display text-[32px] font-black leading-tight tracking-tight">
+              On <span className="text-[#b73026] italic">Instagram</span>
             </h2>
             <a
-              href="#"
-              className="mt-3 inline-flex items-center gap-2 text-white/70 text-[14px] hover:text-[#f2a93b] transition-colors"
+              href={CLINIC.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-2 text-[#4a4a4a] text-[14px] hover:text-[#b73026] transition-colors"
             >
               <InstagramIcon size={16} />
               @powerflow.chiropractic
@@ -832,8 +832,10 @@ export default function Home() {
           {instagramShots.map((src, i) => (
             <Reveal key={`${src}-${i}`} delay={i * 70}>
               <a
-                href="#"
-                className="group block relative aspect-square overflow-hidden rounded-xl ring-1 ring-white/10"
+                href={CLINIC.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block relative aspect-square overflow-hidden rounded-xl ring-1 ring-black/5"
               >
                 <Image
                   src={src}
@@ -842,7 +844,7 @@ export default function Home() {
                   sizes="(max-width: 768px) 33vw, 160px"
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-[#1a1a1a]/0 group-hover:bg-[#1a1a1a]/40 transition-colors grid place-items-center">
+                <div className="absolute inset-0 bg-[#1a1a1a]/0 group-hover:bg-[#1a1a1a]/30 transition-colors grid place-items-center text-white opacity-0 group-hover:opacity-100">
                   <InstagramIcon size={22} />
                 </div>
               </a>
@@ -853,8 +855,10 @@ export default function Home() {
         <Reveal delay={500}>
           <div className="mt-8 text-center">
             <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-full border border-[#f2a93b] text-[#f2a93b] px-6 py-3 font-bold text-sm hover:bg-[#f2a93b] hover:text-[#1a1a1a] transition-colors"
+              href={CLINIC.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-[#b73026] text-[#b73026] px-6 py-3 font-bold text-sm hover:bg-[#b73026] hover:text-white transition-colors"
             >
               <InstagramIcon size={16} />
               Follow us on Instagram
@@ -863,29 +867,29 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* ────────────────────────── BOOK CTA ────────────────────────── */}
+      {/* ────────────────────────── BOOK CTA — sole bold red moment ────────────────────────── */}
       <section
         id="book"
         className="px-5 py-20 bg-[#b73026] text-white relative overflow-hidden"
       >
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#f2a93b] blur-3xl" />
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white blur-3xl" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-white blur-3xl" />
         </div>
         <div className="relative max-w-md mx-auto text-center">
           <p className="text-white/80 text-[11px] tracking-[0.25em] uppercase font-bold mb-3">
             Book Today
           </p>
-          <h2 className="text-[36px] font-black leading-tight tracking-tight">
+          <h2 className="font-display text-[36px] font-black leading-tight tracking-tight">
             Ready for your free spinal check-up?
           </h2>
-          <p className="mt-4 text-white/80 text-[15px] leading-relaxed">
+          <p className="mt-4 text-white/85 text-[15px] leading-relaxed">
             Call or text us — most new patients are seen within the week.
           </p>
           <div className="mt-8 flex flex-col gap-3">
             <a
               href={`tel:${CLINIC.phone}`}
-              className="rounded-full bg-[#f2a93b] text-[#1a1a1a] px-6 py-4 font-bold text-[16px] inline-flex items-center justify-center gap-2 hover:bg-[#d8902a] transition-colors"
+              className="rounded-full bg-white text-[#b73026] px-6 py-4 font-bold text-[16px] inline-flex items-center justify-center gap-2 hover:bg-[#fdfaf4] transition-colors shadow-lg"
             >
               <Phone size={18} />
               {CLINIC.phoneDisplay}
@@ -975,11 +979,11 @@ export default function Home() {
         className="px-5 pt-20 pb-10 bg-[#1a1a1a] text-white"
       >
         <div className="max-w-md mx-auto">
-          <p className="text-[#f2a93b] text-[11px] tracking-[0.25em] uppercase font-bold mb-3 text-center">
+          <p className="text-[#fdfaf4] text-[11px] tracking-[0.25em] uppercase font-bold mb-3 text-center">
             Visit Us
           </p>
-          <h2 className="text-[34px] font-black leading-[1.05] tracking-tight text-center">
-            We'd love to see you.
+          <h2 className="font-display text-[34px] font-black leading-[1.05] tracking-tight text-center">
+            We&apos;d love to see you.
           </h2>
 
           {/* Contact rows */}
@@ -1075,7 +1079,7 @@ export default function Home() {
               href={`https://maps.google.com/?q=${encodeURIComponent(CLINIC.mapsQuery)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 text-[#f2a93b] text-sm font-semibold hover:gap-2 transition-all"
+              className="mt-3 inline-flex items-center gap-1.5 text-[#fdfaf4] text-sm font-semibold hover:gap-2 hover:text-white transition-all"
             >
               Get directions
               <ChevronRight size={16} />
@@ -1084,7 +1088,7 @@ export default function Home() {
 
           {/* Hours */}
           <div className="mt-8 rounded-3xl bg-white/5 ring-1 ring-white/10 p-6">
-            <div className="flex items-center gap-2 mb-4 text-[#f2a93b]">
+            <div className="flex items-center gap-2 mb-4 text-[#fdfaf4]">
               <Clock size={16} />
               <h3 className="font-bold uppercase tracking-wider text-sm">
                 Working Hours
@@ -1111,13 +1115,13 @@ export default function Home() {
 
           {/* Socials */}
           <div className="mt-8 flex items-center justify-center gap-3">
-            <a href="#" aria-label="Instagram" className="grid place-items-center w-11 h-11 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-[#f2a93b] hover:text-[#1a1a1a] transition-colors">
+            <a href={CLINIC.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="grid place-items-center w-11 h-11 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-[#b73026] hover:text-white transition-colors">
               <InstagramIcon />
             </a>
-            <a href="#" aria-label="Facebook" className="grid place-items-center w-11 h-11 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-[#f2a93b] hover:text-[#1a1a1a] transition-colors">
+            <a href={CLINIC.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="grid place-items-center w-11 h-11 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-[#b73026] hover:text-white transition-colors">
               <FacebookIcon />
             </a>
-            <a href="#" aria-label="Google Reviews" className="grid place-items-center w-11 h-11 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-[#f2a93b] hover:text-[#1a1a1a] transition-colors">
+            <a href={CLINIC.social.google} target="_blank" rel="noopener noreferrer" aria-label="Google Reviews" className="grid place-items-center w-11 h-11 rounded-full bg-white/5 ring-1 ring-white/10 hover:bg-[#b73026] hover:text-white transition-colors">
               <GoogleIcon />
             </a>
           </div>

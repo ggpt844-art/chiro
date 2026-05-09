@@ -30,10 +30,10 @@ export default function StickyMobileCTA({ phone, phoneDisplay }: Props) {
       role="region"
       aria-label="Quick booking actions"
     >
-      <div className="bg-[#1a1a1a]/95 backdrop-blur-md border-t border-white/10 px-4 pt-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] flex items-center gap-2 shadow-2xl shadow-black/40">
+      <div className="bg-white/95 backdrop-blur-md border-t border-black/10 px-4 pt-3 pb-[max(env(safe-area-inset-bottom),0.75rem)] flex items-center gap-2 shadow-2xl shadow-black/15">
         <a
           href="#book"
-          className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#f2a93b] text-[#1a1a1a] px-5 py-3.5 font-bold text-[15px] active:scale-95 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+          className="flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-[#b73026] text-white px-5 py-3.5 font-bold text-[15px] active:scale-95 transition-transform shadow-lg shadow-[#b73026]/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b73026] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         >
           <Calendar size={16} />
           Book Free Check-up
@@ -41,7 +41,7 @@ export default function StickyMobileCTA({ phone, phoneDisplay }: Props) {
         <a
           href={`tel:${phone}`}
           aria-label={`Call ${phoneDisplay}`}
-          className="grid place-items-center w-12 h-12 rounded-full bg-[#b73026] text-white active:scale-95 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1a1a]"
+          className="grid place-items-center w-12 h-12 rounded-full bg-[#1a1a1a] text-white active:scale-95 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a1a1a] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         >
           <Phone size={18} />
         </a>
