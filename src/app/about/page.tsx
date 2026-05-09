@@ -76,18 +76,22 @@ export default function AboutPage() {
       <section id="dr-sandy" className="px-5 py-20 bg-[#fdfaf4]">
         <div className="max-w-3xl mx-auto grid md:grid-cols-[1fr_1.1fr] gap-10 items-start">
           <Reveal>
-            <div className="relative aspect-[4/5] w-full rounded-[28px] overflow-hidden ring-1 ring-black/5 shadow-xl">
+            <div className="relative aspect-[4/3] w-full rounded-[28px] overflow-hidden ring-1 ring-black/5 shadow-xl">
               <Image
-                src="/images/dr-sandy.png"
-                alt={`${CLINIC.doctor.name}, ${CLINIC.doctor.credentials}`}
+                src="/images/dr-sandy-spine-model.png"
+                alt={`${CLINIC.doctor.name} in his Mississauga clinic, holding an anatomical spine model used to teach patients how chiropractic care works`}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 380px"
+                sizes="(max-width: 768px) 100vw, 420px"
                 placeholder="blur"
                 blurDataURL={IMAGE_BLUR}
                 priority
               />
             </div>
+            <p className="mt-3 text-[12.5px] text-[#2c2c2c]/75 leading-snug px-1">
+              Dr. Sandy in the Powerflow clinic — every new patient gets walked
+              through their spine, on a real model, before any adjustment.
+            </p>
           </Reveal>
           <Reveal delay={120}>
             <div>
